@@ -17,7 +17,6 @@ describe('api home test', () => {
         res.on('data', (chunk) => { rawData += chunk; });
         res.on('end', () => {
           assert(rawData === 'api home');
-          console.log('done');
           done();
         });
       } else {

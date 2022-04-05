@@ -2,6 +2,7 @@ const http = require('http');
 const { assert } = require('chai');
 
 const server = require('../server');
+const port = require('../port.json');
 
 describe('api home test', () => {
   let appServer;
@@ -11,7 +12,7 @@ describe('api home test', () => {
   });
 
   it('should respond', (done) => {
-    http.get('http://localhost:8080/api/', (res) => {
+    http.get(`http://localhost:${port}/api/`, (res) => {
       if (res.statusCode === 200) {
         let rawData = '';
         res.on('data', (chunk) => { rawData += chunk; });
@@ -38,7 +39,7 @@ describe('api home test', () => {
       }
     };
 
-    http.get('http://localhost:8080/api/', isRateLimited);
+    http.get(`http://localhost:${port}/api/`, isRateLimited);
   });
 
   after(() => {
